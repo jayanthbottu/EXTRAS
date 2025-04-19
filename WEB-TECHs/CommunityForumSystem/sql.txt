@@ -1,0 +1,29 @@
+CREATE DATABASE IF NOT EXISTS forum_db;
+USE forum_db;
+    
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    username VARCHAR(255) NOT NULL,  -- Store the username instead of user_id
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO posts (title, content, username)
+VALUES 
+    ('Welcome to the Community Forum!', 'This is a place for everyone to share their ideas, questions, and discussions. Please be respectful of others.', 'JohnDoe'),
+    ('Introduction to Forum Guidelines', 'Here are some basic guidelines to follow: Be respectful, avoid spamming, and make sure to keep discussions relevant to the topic.', 'JaneDoe'),
+    ('How to Post on the Forum', 'To create a new post, simply fill out the form at the top of the page and click "Post". Your message will be shared with everyone in the community.', 'SamSmith'),
+    ('PHP vs JavaScript: What do you prefer?', 'This is a hot topic among developers. Some love PHP for its simplicity, while others prefer JavaScript for its versatility. Let\'s discuss!', 'AliceJohnson'),
+    ('Ask me anything about MariaDB', 'I have been using MariaDB for years. Feel free to ask me any questions related to database design, optimization, or troubleshooting!', 'BobWilliams');
+
+
